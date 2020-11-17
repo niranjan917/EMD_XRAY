@@ -1,0 +1,58 @@
+
+library("imager")
+img1 <- load.image('PN-F1.jpg')
+plot(img1)
+img2 <- load.image('PN-F2.jpg')
+plot(img2)
+img3 <- load.image('TB-F1.jpg')
+plot(img3)
+img4 <- load.image('TB-F2.jpg')
+plot(img4)
+
+img1 <- resize(img1, 50, 50)
+img1 <-grayscale(img1)
+plot(img1)
+dim(img1)
+img2 <- resize(img2, 50, 50)
+img2 <-grayscale(img2)
+plot(img2)
+dim(img2)
+img3 <- resize(img3, 50, 50)
+img3 <-grayscale(img3)
+plot(img3)
+dim(img3)
+img4 <- resize(img4, 50, 50)
+img4 <-grayscale(img4)
+plot(img4)
+dim(img4)
+
+a <- matrix(img1)
+b <- matrix(img2)
+c <- matrix(img3)
+d <- matrix(img4)
+
+
+e <- emdist::emd2d(a, a)
+f <- emdist::emd2d(a, b)
+g <- emdist::emd2d(a, c)
+h <- emdist::emd2d(a, d)
+
+i <- emdist::emd2d(b, a)
+j <- emdist::emd2d(b, b)
+k <- emdist::emd2d(b, c)
+l <- emdist::emd2d(b, d)
+
+m <- emdist::emd2d(c, a)
+n <- emdist::emd2d(c, b)
+o <- emdist::emd2d(c, c)
+p <- emdist::emd2d(c, d)
+
+q <- emdist::emd2d(d, a)
+r <- emdist::emd2d(d, b)
+s <- emdist::emd2d(d, c)
+t <- emdist::emd2d(d, d)
+num_vec <- c(e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t)
+num_vec
+write.csv(num_vec, "Healthy_Image_Representative.csv")
+
+
